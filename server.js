@@ -8,25 +8,26 @@ connectDB();
 
 const app = express();
 
-// 🔥 CORS MUST COME FIRST
+app.use(express.json());
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: [
       "http://localhost:3000",
       "https://expense-track-frontend-eight.vercel.app"
     ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"]
+    credentials: true
   })
 );
 
-app.use(express.json());
-app.use(cookieParser());
-
-// Routes AFTER CORS
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/budget", require("./routes/budgetRoutes"));
 app.use("/api/expense", require("./routes/expenseRoutes"));
+
+app.get("/", (req, res) => {
+  res.send("Expense API Running 🚀");
+});
 
 const PORT = process.env.PORT || 5000;
 
