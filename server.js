@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://expense-track-frontend-eight.vercel.app/"
+      "https://expense-track-frontend-eight.vercel.app"
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"]
